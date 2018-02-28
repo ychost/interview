@@ -2,7 +2,6 @@ package com.aiesst.interview.guide;
 
 import lombok.Data;
 import lombok.experimental.var;
-import org.jetbrains.annotations.Contract;
 
 import java.util.HashMap;
 import java.util.Stack;
@@ -40,7 +39,6 @@ public class MaxTree {
      * @param root 树的根节点
      * @return 校验结果
      */
-    @Contract("null -> true")
     public static boolean validTree(Node root) {
         return root == null || validNode(root) && validTree(root.getLeft()) && validTree(root.getRight());
     }

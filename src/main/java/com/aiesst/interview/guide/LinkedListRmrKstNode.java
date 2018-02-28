@@ -1,5 +1,6 @@
 package com.aiesst.interview.guide;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.var;
 
@@ -118,21 +119,38 @@ interface LinkedNode {
  * 单向链表
  */
 @Data
-class OneWayNode implements LinkedNode {
-    private Object data;
-    private OneWayNode next;
+class OneWayNode<T> implements LinkedNode {
+    private T data;
+    private OneWayNode<T> next;
+    private OneWayNode<T> tail;
 
-    public OneWayNode(Object data) {
-        this.data = data;
+    /**
+     * 是否为尾节点
+     *
+     * @return
+     */
+    public boolean isTail() {
+        return next == null;
     }
 
-    public void push(Object data) {
-        var node = new OneWayNode(data);
-        var pointer = this;
+    public OneWayNode(T data) {
+        this.data = data;
+        tail = this;
+    }
+
+
+    public OneWayNode<T> push(OneWayNode<T> node) {
+        OneWayNode pointer = this;
         while (pointer.getNext() != null) {
             pointer = pointer.getNext();
         }
         pointer.setNext(node);
+        return this;
+    }
+
+    public OneWayNode<T> push(T data) {
+        var node = new OneWayNode<T>(data);
+        return push(node);
     }
 }
 
