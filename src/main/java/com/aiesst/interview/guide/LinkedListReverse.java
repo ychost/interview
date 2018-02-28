@@ -26,7 +26,6 @@ public class LinkedListReverse {
             previous = pointer;
             pointer = next;
         }
-        log.info("hello world");
         return previous;
     }
 

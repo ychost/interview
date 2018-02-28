@@ -33,15 +33,19 @@ public class LinkedListCopyRandNodeTest {
         for (int i = 0; i < nodeArr.length - 1; i++) {
             nodeArr[i].setRand(nodeArr[i + 1]);
         }
-        var copyPointer = LinkedListCopyRandNode.copy(header);
+        var copyPointer = LinkedListCopyRandNode.copyEff(header);
+        pointer = header;
         //校验
         while (copyPointer != null) {
+            Assert.assertEquals(pointer.getData(), copyPointer.getData());
+            Assert.assertNotEquals(pointer, copyPointer);
+
+            if (pointer.getRand() != null) {
+                Assert.assertEquals(pointer.getRand().getData(), copyPointer.getRand().getData());
+                Assert.assertNotEquals(pointer.getRand(), copyPointer.getRand());
+            }
             copyPointer = copyPointer.getNext();
             pointer = pointer.getNext();
-            Assert.assertEquals(pointer.getData(), copyPointer.getData());
-            Assert.assertEquals(pointer.getRand().getData(), copyPointer.getRand().getData());
-            Assert.assertNotEquals(pointer, copyPointer);
-            Assert.assertNotEquals(pointer.getRand(), copyPointer.getRand());
         }
     }
 }
