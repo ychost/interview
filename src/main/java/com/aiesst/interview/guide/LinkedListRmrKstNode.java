@@ -122,7 +122,6 @@ interface LinkedNode {
 class OneWayNode<T> implements LinkedNode {
     private T data;
     private OneWayNode<T> next;
-    private OneWayNode<T> tail;
 
     /**
      * 是否为尾节点
@@ -135,9 +134,15 @@ class OneWayNode<T> implements LinkedNode {
 
     public OneWayNode(T data) {
         this.data = data;
-        tail = this;
     }
 
+    public OneWayNode<T> getTail() {
+        OneWayNode pointer = this;
+        while (pointer.getNext() != null) {
+            pointer = pointer.getNext();
+        }
+        return pointer;
+    }
 
     public OneWayNode<T> push(OneWayNode<T> node) {
         OneWayNode pointer = this;
@@ -151,6 +156,11 @@ class OneWayNode<T> implements LinkedNode {
     public OneWayNode<T> push(T data) {
         var node = new OneWayNode<T>(data);
         return push(node);
+    }
+
+    @Override
+    public int hashCode() {
+        return data.hashCode();
     }
 }
 
