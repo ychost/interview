@@ -3,7 +3,6 @@ package com.aiesst.interview.guide;
 import lombok.experimental.var;
 
 import java.util.LinkedList;
-import java.util.Queue;
 
 /**
  * 给定一数组求其中子数组的最大值减去最小值 <= Num 的子数组数量
@@ -85,6 +84,42 @@ public class MaxSubMinNum {
             }
         }
         return res;
+    }
+
+    /**
+     * 在单链表中删除指定节点 ☆
+     *
+     * @author ychost
+     * @date 2018-3-2
+     */
+    public static class LinkedListDelData {
+        /**
+         * 删除值为data的节点
+         *
+         * @param header 单链表头指针
+         * @param data   删除的节点值
+         * @return 删除节点后的头指针
+         */
+        static OneWayNode delData(OneWayNode header, Object data) {
+            var pointer = header;
+            OneWayNode pre = null;
+            while (pointer != null) {
+                var next = pointer.getNext();
+                if (pointer.getData().equals(data)) {
+                    if (pre != null) {
+                        pre.setNext(next);
+                    }
+                    pointer.setNext(null);
+                } else {
+                    if (pre == null) {
+                        header = pointer;
+                    }
+                    pre = pointer;
+                }
+                pointer = next;
+            }
+            return header;
+        }
     }
 }
 

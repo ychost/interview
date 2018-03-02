@@ -13,7 +13,6 @@ import java.util.LinkedList;
  */
 @Data
 public class ArrayWindow {
-
     /**
      * 获取窗口截取状态下的最大值
      * 该方法效率很低 O(nxw)
