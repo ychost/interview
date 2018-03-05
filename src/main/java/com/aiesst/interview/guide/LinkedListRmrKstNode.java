@@ -111,6 +111,9 @@ interface LinkedNode {
             System.out.print(pointer.getData() + " ->");
             pointer = pointer.getNext();
         }
+        if (pointer != null && pointer.getNext() == this) {
+            System.out.print(pointer.getData() + " ->");
+        }
         System.out.println();
     }
 }
